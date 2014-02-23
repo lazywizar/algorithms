@@ -1,6 +1,8 @@
 package com.thinklazy;
 import java.util.Arrays;
 
+//adding comment to test commit
+
 public class CoinChange {
 
 	public static void main(String args[]) {
