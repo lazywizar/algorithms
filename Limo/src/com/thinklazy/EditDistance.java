@@ -1,5 +1,7 @@
 package com.thinklazy;
 
+//adding comment to test commit
+
 public class EditDistance {
 	public static void main(String args[]) {
 		System.out.println(computeLevenshteinDistance("good", "goodbye"));
