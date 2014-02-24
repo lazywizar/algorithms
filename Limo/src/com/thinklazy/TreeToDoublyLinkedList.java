@@ -6,7 +6,6 @@ public class TreeToDoublyLinkedList {
 	// Initialize previously visited node as NULL. This is
 	// static so that the same value is accessible in all recursive calls
 	static TreeNode prev = null;
-
 	public static void main(String args[]) {
 		TreeNode root = TreeUtils.buildSampleTree();
 		
