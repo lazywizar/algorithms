@@ -2,21 +2,21 @@ package com.thinklazy;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 public class TreeUtils {
 	public static void main(String args[]) throws Exception {
 		TreeNode root = buildSampleTree();
-		printLevelOrder(root);
+		levelOrderOptimal(root);
 		System.out.println();
-		
-		printPathBetweenTwoNodeData(root,4, 6);
-		
-		/*List<TreeNode> path = printPathBetweenTwoNodeData(root,4, 6);
-		for(TreeNode n : path) {
-			System.out.print(n.data + " ===> ");
-		}
+		// printPathBetweenTwoNodeData(root,4, 6);
+
+		/*
+		 * List<TreeNode> path = printPathBetweenTwoNodeData(root,4, 6);
+		 * for(TreeNode n : path) { System.out.print(n.data + " ===> "); }
 		 * mirror(root); System.out.println(); printInOrder(root);
 		 * System.out.println(); System.out.println(isMirror(root,
 		 * buildSampleTree()));
@@ -30,21 +30,22 @@ public class TreeUtils {
 		return root1.data == root2.data && isMirror(root1.left, root2.right)
 				&& isMirror(root1.right, root2.left);
 	}
-	
-	public static void printPathThatSumToK(TreeNode root, int k, List<TreeNode> pathTillNow) {
-		if(root == null) {
+
+	public static void printPathThatSumToK(TreeNode root, int k,
+			List<TreeNode> pathTillNow) {
+		if (root == null) {
 			return;
 		}
 		k = k - root.data;
 		pathTillNow.add(root);
-		if(k == 0) {
-			for(TreeNode n : pathTillNow) {
+		if (k == 0) {
+			for (TreeNode n : pathTillNow) {
 				System.out.print(n.data + " ");
 			}
 			System.out.println();
-			//return;
+			// return;
 		}
-		printPathThatSumToK(root.left,k, pathTillNow);
+		printPathThatSumToK(root.left, k, pathTillNow);
 		printPathThatSumToK(root.right, k, pathTillNow);
 		pathTillNow.remove(root); // very important :P
 	}
@@ -110,67 +111,71 @@ public class TreeUtils {
 		return right;
 	}
 
-	public static void printPathBetweenTwoNodeData(TreeNode root, int a, int b) throws Exception {
+	public static void printPathBetweenTwoNodeData(TreeNode root, int a, int b)
+			throws Exception {
 		TreeNode lca = LCAData(root, a, b);
 		List<TreeNode> pathA = getPathToNodeData(lca, a);
 		List<TreeNode> pathB = getPathToNodeData(lca, b);
-		
+
 		Collections.reverse(pathA);
-		for(TreeNode n : pathA) {
+		for (TreeNode n : pathA) {
 			System.out.print(n.data + " => ");
 		}
-		pathB.remove(lca); //remove the root to be printed twice.
-		for(TreeNode n : pathB) {
+		pathB.remove(lca); // remove the root to be printed twice.
+		for (TreeNode n : pathB) {
 			System.out.print(n.data + " => ");
 		}
-		
+
 	}
-	
-	public static List<TreeNode> getPathToNodeData(TreeNode root, int nodeData) throws Exception {
+
+	public static List<TreeNode> getPathToNodeData(TreeNode root, int nodeData)
+			throws Exception {
 		return getPathToNodeDataUtil(root, nodeData);
 	}
-	
-	public static void printPathToNodeDataUtil(TreeNode root, int nodeData, List<TreeNode> pathTillNow) {
-		if(root == null) {
+
+	public static void printPathToNodeDataUtil(TreeNode root, int nodeData,
+			List<TreeNode> pathTillNow) {
+		if (root == null) {
 			return;
 		}
 		pathTillNow.add(root);
-		if(nodeData == root.data) {
-			for(TreeNode n : pathTillNow) {
+		if (nodeData == root.data) {
+			for (TreeNode n : pathTillNow) {
 				System.out.print(n.data);
 			}
 			System.out.println();
 			return;
 		}
-		printPathToNodeDataUtil(root.left,nodeData, pathTillNow);
+		printPathToNodeDataUtil(root.left, nodeData, pathTillNow);
 		printPathToNodeDataUtil(root.right, nodeData, pathTillNow);
 		pathTillNow.remove(root); // very important :P
 	}
 
-	public static List<TreeNode> getPathToNodeDataUtil(TreeNode root, int nodeData) {
-		if(root == null) {
+	public static List<TreeNode> getPathToNodeDataUtil(TreeNode root,
+			int nodeData) {
+		if (root == null) {
 			return null;
 		}
 		List<TreeNode> path = new ArrayList<TreeNode>();
 		path.add(root);
-		if(nodeData == root.data) {
+		if (nodeData == root.data) {
 			return path;
 		}
-		List<TreeNode> leftPath = getPathToNodeDataUtil(root.left,nodeData);
+		List<TreeNode> leftPath = getPathToNodeDataUtil(root.left, nodeData);
 		List<TreeNode> rightPath = getPathToNodeDataUtil(root.right, nodeData);
-		if(leftPath != null && !leftPath.isEmpty()) {
+		if (leftPath != null && !leftPath.isEmpty()) {
 			path.addAll(leftPath);
-		} else if(rightPath != null && !rightPath.isEmpty()) {
+		} else if (rightPath != null && !rightPath.isEmpty()) {
 			path.addAll(rightPath);
 		} else {
 			path.remove(root);
 		}
 		return path;
 	}
-	
-	
-	public static List<TreeNode> printPathToNodeIterative(TreeNode root, TreeNode a) {
-		//TODO
+
+	public static List<TreeNode> printPathToNodeIterative(TreeNode root,
+			TreeNode a) {
+		// TODO
 		if (root == null) {
 			return null;
 		}
@@ -206,10 +211,41 @@ public class TreeUtils {
 	}
 
 	public static int maxHeight(TreeNode node) {
-		if(node == null ) {
+		if (node == null) {
 			return 0;
 		}
-		return Math.max(maxHeight(node.left), maxHeight(node.right)) +1 ;
+		return Math.max(maxHeight(node.left), maxHeight(node.right)) + 1;
+	}
+
+	public static void printLevelOrderOptimal(TreeNode root) {
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			TreeNode node = (TreeNode) queue.remove();
+			if (node == null)
+				continue;
+			System.out.println("Checking node " + node.data);
+			queue.addAll(node.getChildren());
+		}
+	}
+	
+	public static void levelOrderOptimal(TreeNode root) {
+		List<TreeNode> nodes = new ArrayList<TreeNode>();
+		nodes.add(root);
+		levelOrderOptimalUtil(nodes);
+	}
+	
+	private static void levelOrderOptimalUtil(List<TreeNode> nodes) {
+	    List<TreeNode> next = new ArrayList<TreeNode>();
+	    for (TreeNode t : nodes) {
+	        if (t != null) {
+	            System.out.print(t.data);
+	            next.add(t.left);
+	            next.add(t.right);
+	        }
+	    }
+	    System.out.println();
+	    if(next.size() > 0)levelOrderOptimalUtil(next);
 	}
 	
 	public static TreeNode buildSampleTree() {

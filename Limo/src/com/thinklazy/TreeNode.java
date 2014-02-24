@@ -1,5 +1,8 @@
 package com.thinklazy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TreeNode {
 	int data;
 	TreeNode left;
@@ -9,6 +12,14 @@ public class TreeNode {
 		super();
 		this.left = null;
 		this.right = null;
+	}
+	
+	public List<TreeNode> getChildren() {
+		List<TreeNode> children = new ArrayList<TreeNode>();
+		children.add(this.left);
+		children.add(this.right);
+		
+		return children;
 	}
 	
 	public TreeNode(int data) {
