@@ -1,6 +1,6 @@
 package com.thinklazy;
 
-public class PlayWithBinary {
+public class PlayWithBit {
 	public static void main(String args[]) {
 		int val = 9;
 		System.out.println(Integer.toBinaryString(val));
