@@ -1,18 +1,17 @@
 package com.thinklazy;
 
 public class LargestIMinusJArray {
-    int max(int x, int y)
-    {
-        return x > y? x : y;
+    int max(int x, int y) {
+        return x > y ? x : y;
     }
-     
-    int min(int x, int y)
-    {
-        return x < y? x : y;
+
+    int min(int x, int y) {
+        return x < y ? x : y;
     }
-     
-    /* For a given array arr[], returns the maximum j Ð i such that
-        arr[j] > arr[i] */
+
+    /*
+     * For a given array arr[], returns the maximum j Ð i such that arr[j] > arr[i]
+     */
     int maxIndexDiff(int arr[], int n)
     {
         int maxDiff;
@@ -43,18 +42,18 @@ public class LargestIMinusJArray {
                 maxDiff = max(maxDiff, j-i);
                 j = j + 1;
             }
-            else
+            else {
                 i = i+1;
+            }
         }
      
         return maxDiff;
     }
-     
+
     /* Driver program to test above functions */
-    int main()
-    {
+    int main() {
         int arr[] = {9, 2, 3, 4, 5, 6, 7, 8, 18, 0};
-        int n = sizeof(arr)/sizeof(arr[0]);
+        int n = sizeof(arr) / sizeof(arr[0]);
         int maxDiff = maxIndexDiff(arr, n);
         printf("\n %d", maxDiff);
         getchar();

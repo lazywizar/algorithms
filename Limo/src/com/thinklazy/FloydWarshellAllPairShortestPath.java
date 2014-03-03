@@ -37,7 +37,6 @@ public class FloydWarshellAllPairShortestPath {
                 }
             }
         }
-     
         // Print the shortest distance matrix
         //printSolution(dist);
     }

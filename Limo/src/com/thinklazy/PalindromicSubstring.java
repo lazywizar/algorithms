@@ -3,7 +3,6 @@ package com.thinklazy;
 import java.util.Arrays;
 
 public class PalindromicSubstring {
-
     public static void main(String args[]) {
         System.out.println(lps("BBABCBCAB".toCharArray()));
     }

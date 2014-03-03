@@ -9,7 +9,10 @@ public class GraphColoring {
          * Create following graph and test whether it is 3 colorable (3)---(2) | / | | / | | / |
          * (0)---(1)
          */
-        int graph[][] = { {0, 1, 1, 1}, {1, 0, 1, 0}, {1, 1, 0, 1}, {1, 0, 1, 0},};
+        int graph[][] = { {0, 1, 1, 1}, 
+                          {1, 0, 1, 0}, 
+                          {1, 1, 0, 1}, 
+                          {1, 0, 1, 0},};
         int m = 3; // Number of colors
         graphColoring(graph, m);
     }
