@@ -15,10 +15,10 @@ public class TestClass {
         Test t = Test.getTestInstance();
 
         // System.out.println(swapBits(4, 1, 3));
-        // reverse("abcdef");
+        // Character.toChars(65)("abcdef");
         // System.out.println(reverseWithReturn("abcdef"));
         // System.out.println(countWords("hello    mr     anderson"));
-        // reverseWordOfSentence("hello    mr     anderson");
+        //reverseWordOfSentence("hello    mr     anderson");
         // permute("aab".toCharArray(), 0);
         // System.out.println(isBitSet(3, 2));
         // System.out.println(isBitSet(4, 0));
